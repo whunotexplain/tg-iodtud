@@ -8,7 +8,7 @@ menu = ReplyKeyboardMarkup(
 )
 
 
-in_kb = ReplyKeyboardMarkup(
+main_kb = ReplyKeyboardMarkup(
  keyboard=[
     [
         KeyboardButton(text="Администрторы"),
