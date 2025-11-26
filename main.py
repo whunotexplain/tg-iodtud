@@ -1,4 +1,4 @@
-from aiogram import F, Bot, Dispatcher
+from aiogram import F, Bot, Dispatcher, Router
 from aiogram.types import Message, CallbackQuery
 from aiogram.fsm.storage.memory import MemoryStorage
 from aiogram.filters import CommandStart, Command
@@ -9,7 +9,7 @@ import logging
 import keyboard.example as kb
 from aiogram.fsm.state import StatesGroup, State
 from aiogram.fsm.context import FSMContext
-
+from middleware import TestMiddleware
 
 class Registartion(StatesGroup):
     name = State()
@@ -19,6 +19,13 @@ class Registartion(StatesGroup):
 api = config.api_key
 bot = Bot(token=api)
 dp = Dispatcher(storage=MemoryStorage())
+
+
+router = Router()
+router.message.middleware(TestMiddleware())
+
+
+
 logging.basicConfig(
     level=logging.INFO,
     filename="logs.log",
